@@ -5,6 +5,9 @@ import { expect } from 'chai';
 import { mount } from 'enzyme';
 import Weather from '../src/Weather';
 import WeatherService from '../src/WeatherService';
+const sinon = require('sinon');
+const sinonStubPromise = require('sinon-stub-promise');
+sinonStubPromise(sinon);
 
 const mockWeather = {
   city: 'Hamburg',
@@ -101,5 +104,36 @@ describe("Weather", function() {
     // as our mock promise is sync everything should have been rendered here
     expect(weather.state().weather).to.have.property('city');
     expect(weatherWidget.find('h1')).to.have.length(1);
+  });
+});
+
+describe.only('Weather with sinon-stub-promise', function() {
+  let readWeatherReportStub;
+  beforeEach(function() {
+    logs = ['--- beforeEach ---------------------------------------'];
+    readWeatherReportStub = sinon.stub(WeatherService, 'readWeatherReport').returnsPromise();
+  });
+  afterEach(function() {
+    // dump out our logs
+    logs.push('--- afterEach ----------------------------------------');
+    logs.forEach((l, ix) => console.log(`| [${ix}] ${l}`));
+
+    readWeatherReportStub.restore();
+  });
+  it('should render synchronously with sinon promise stub', function() {
+    readWeatherReportStub.resolves(mockWeather);
+
+    logs.push('Before mount');
+    const weather = mount(<Weather city="Hamburg"/>);
+    logs.push('After mount');
+    const weatherWidget = weather.find('WeatherWidget');
+    logs.push('After find');
+
+    expect(readWeatherReportStub.calledOnce).to.be.true;
+    expect(readWeatherReportStub.alwaysCalledWith('Hamburg')).to.be.true;
+    expect(weatherWidget).to.have.length(1);
+    expect(weather.state().weather).to.have.property('city');
+    expect(weather.find('h1')).to.have.length(1);
+
   });
 });
