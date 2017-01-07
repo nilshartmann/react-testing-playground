@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --watch test/.setup.js test/**/*-test.js",
+    "test": "mocha --watch --require test/.setup.js 'test/**/*.@(js|jsx)'",
     "clean": "rm -rf public/dist/",
     "start": "webpack-dev-server --progress --colors --port 3000 --content-base public"
   },
@@ -23,7 +23,6 @@
     "babel-register": "^6.18.0",
     "chai": "^3.5.0",
     "enzyme": "^2.7.0",
-    "jsdom": "^9.9.1",
     "mocha": "^3.2.0",
     "react-addons-test-utils": "^15.4.1",
     "sinon": "^1.17.7",

@@ -1,4 +1,3 @@
-
 const fakeFetchResult = result => ({
   json: () => result
 });
