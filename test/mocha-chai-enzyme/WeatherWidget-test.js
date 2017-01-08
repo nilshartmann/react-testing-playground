@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import WeatherWidget from '../src/WeatherWidget';
+import WeatherWidget from '../../src/WeatherWidget';
 
 const mockWeather = {
   city:    'Hamburg',

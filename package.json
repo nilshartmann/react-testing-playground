@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --watch --require test/.setup.js 'test/**/*.@(js|jsx)'",
+    "test": "mocha --watch --require test/mocha-chai-enzyme/.setup.js 'test/mocha-chai-enzyme/**/*.@(js|jsx)'",
     "clean": "rm -rf public/dist/",
     "start": "webpack-dev-server --progress --colors --port 3000 --content-base public"
   },

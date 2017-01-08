@@ -3,8 +3,8 @@ import 'jsdom-global/register'
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import Weather from '../src/Weather';
-import WeatherService from '../src/WeatherService';
+import Weather from '../../src/Weather';
+import WeatherService from '../../src/WeatherService';
 const sinon = require('sinon');
 const sinonStubPromise = require('sinon-stub-promise');
 sinonStubPromise(sinon);
