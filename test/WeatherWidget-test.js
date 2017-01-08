@@ -1,18 +1,24 @@
 import React from 'react';
 import { expect } from 'chai';
-import { shallow, mount, render } from 'enzyme';
+import { shallow } from 'enzyme';
 import WeatherWidget from '../src/WeatherWidget';
-//
-//describe("WeatherWidget", function() {
-//  it.skip("bla bla bla", function() {
-//    expect(shallow(<WeatherWidget city="Hamburg"/>).contains(<div>No weather data loaded yet</div>)).to.equal(true);
-//  });
-//
-////  it("contains spec with an expectation", function() {
-////    expect(shallow(<Foo />).is('.foo')).to.equal(true);
-////  });
-////
-////  it("contains spec with an expectation", function() {
-////    expect(mount(<Foo />).find('.foo').length).to.equal(1);
-////  });
-//});
+
+const mockWeather = {
+  city:    'Hamburg',
+  degrees: -7,
+  sky:     'clear'
+};
+
+describe("WeatherWidget", function() {
+  it("render correctly without weather property", function() {
+    expect(shallow(<WeatherWidget />).contains(<div>No weather data loaded yet</div>)).to.equal(true);
+  });
+
+  it("render correctly with weather property", function() {
+    const weatherWidget = shallow(<WeatherWidget weather={mockWeather}/>);
+    expect(weatherWidget.contains(<h1>Weather</h1>)).to.be.true;
+    const title = weatherWidget.findWhere(n => n.type() === 'p' && n.text().indexOf('City') !== -1);
+    expect(title).to.have.length(1);
+    expect(title.text()).to.equal('City: Hamburg');
+  });
+});

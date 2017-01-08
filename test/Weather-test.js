@@ -107,7 +107,7 @@ describe("Weather", function() {
   });
 });
 
-describe.only('Weather with sinon-stub-promise', function() {
+describe('Weather with sinon-stub-promise', function() {
   let readWeatherReportStub;
   beforeEach(function() {
     logs = ['--- beforeEach ---------------------------------------'];
