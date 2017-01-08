@@ -10,13 +10,28 @@ export default class Weather extends React.Component {
   }
 
   componentDidMount() {
-    const { city } = this.props;
-    WeatherService.readWeatherReport(city)
-      .then(weather => this.setState({weather}));
+    this.loadWeatherReport(this.props.city);
+  }
+
+  componentWillReceiveProps(newProps) {
+    const { city: thisCity } = this.props;
+    const { city: newCity } = newProps;
+
+    if ((thisCity && thisCity !== newCity)
+      || (!thisCity && newCity)) {
+      this.loadWeatherReport(newCity);
+    }
+  }
+
+  loadWeatherReport(city) {
+    if (city) {
+      WeatherService.readWeatherReport(city)
+        .then(weather => this.setState({ weather }));
+    }
   }
 
   render() {
     const { weather } = this.state;
-    return <WeatherWidget weather={weather} />
+    return <WeatherWidget weather={weather}/>
   }
 }

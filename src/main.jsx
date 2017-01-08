@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Weather from './Weather';
+import WeatherApp from './WeatherApp';
 
-
-ReactDOM.render(<Weather city="Hamburgment.getElementById("main"));
+ReactDOM.render(
+  <WeatherApp />,
+  document.getElementById("main")
+);

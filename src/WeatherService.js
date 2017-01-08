@@ -7,14 +7,15 @@ const fakeFetchResult = result => ({
 // we simulate a call
 const fakeFetch = url => {
   console.log('Simulate Call to ' + url);
+  const skies = [ 'clear', 'cloudy', 'rainy' ];
   return new Promise(resolve => {
     setTimeout(function() {
       resolve(fakeFetchResult({
-        city: url.substring(13),
-        degrees: -20,
-        sky: 'clear'
+        city:    url.substring(13),
+        degrees: Math.floor(Math.random() * 16) + 1,
+        sky:     skies[ Math.floor(Math.random() * skies.length) ]
       }));
-    }, 1000);
+    }, 250);
   });
 };
 
