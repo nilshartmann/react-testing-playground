@@ -32,6 +32,9 @@ export default class Weather extends React.Component {
 
   render() {
     const { weather } = this.state;
-    return <WeatherWidget weather={weather}/>
+    return (<div>
+      <WeatherWidget weather={weather}/>
+      <WeatherWidget weather={weather}/>
+    </div>);
   }
 }
