@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:unexpected": "mocha --watch --require test/mocha-unexpected/.setup.js 'test/mocha-unexpected/**/*.@(js|jsx)'",
-    "test:enzyme": "mocha --watch --require test/mocha-chai-enzyme/.setup.js 'test/mocha-chai-enzyme/**/*.@(js|jsx)'",
+    "test": "npm run test:unexpected && npm run test:enzyme",
+    "test:unexpected": "mocha --require test/mocha-unexpected/.setup.js 'test/mocha-unexpected/**/*.js'",
+    "test:enzyme": "mocha --require test/mocha-chai-enzyme/.setup.js 'test/mocha-chai-enzyme/**/*.js'",
     "clean": "rm -rf public/dist/",
     "start": "webpack-dev-server --progress --colors --port 3000 --content-base public"
   },
@@ -24,6 +25,7 @@
     "babel-register": "^6.18.0",
     "chai": "^3.5.0",
     "enzyme": "^2.7.0",
+    "enzyme-to-json": "^1.4.5",
     "mocha": "^3.2.0",
     "react-addons-test-utils": "^15.4.1",
     "sinon": "^1.17.7",

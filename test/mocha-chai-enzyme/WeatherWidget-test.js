@@ -9,7 +9,7 @@ const mockWeather = {
   sky:     'clear'
 };
 
-describe("WeatherWidget", function() {
+describe("[mocha-chai-enzyme] WeatherWidget", function() {
   it("render correctly without weather property", function() {
     expect(shallow(<WeatherWidget />).contains(<div>No weather data loaded yet</div>)).to.equal(true);
   });

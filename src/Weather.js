@@ -34,7 +34,6 @@ export default class Weather extends React.Component {
     const { weather } = this.state;
     return (<div>
       <WeatherWidget weather={weather}/>
-      <WeatherWidget weather={weather}/>
     </div>);
   }
 }

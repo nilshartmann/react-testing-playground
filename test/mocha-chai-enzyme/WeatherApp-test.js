@@ -13,7 +13,7 @@ const mockWeather = {
   sky:     'clear'
 };
 
-describe("WeatherApp", function() {
+describe("[mocha-chai-enzyme] WeatherApp", function() {
   let stub;
 
   it("render empty form on startup", function() {

@@ -19,29 +19,22 @@ const mockWeather = {
   sky:     'clear'
 };
 
-let logs = [];
-
-describe('Weather with sinon-stub-promise', function() {
+describe('[mocha-unexpected-react] Weather', function() {
   let readWeatherReportStub;
   beforeEach(function() {
-    logs = [ '--- beforeEach ---------------------------------------' ];
     readWeatherReportStub = sinon.stub(WeatherService, 'readWeatherReport').returnsPromise();
   });
   afterEach(function() {
-    // dump out our logs
-    logs.push('--- afterEach ----------------------------------------');
-    logs.forEach((l, ix) => console.log(`| [${ix}] ${l}`));
-
     readWeatherReportStub.restore();
   });
   it('should render synchronously with sinon promise stub', function() {
     readWeatherReportStub.resolves(mockWeather);
 
-    logs.push('Before mount');
     const weather = ReactTestUtils.renderIntoDocument(<Weather city="Hamburg"/>);
-    logs.push('After mount');
+    // TODO: can we make sure we have only rendered EXACTLY ONE WeatherWidget?
+    expect(weather, 'to contain', <WeatherWidget weather={mockWeather}/>);
 
-    // not necessary at all, as below we make sure that WeatherWidget is rendered
+    // not necessary at all, as above we already made sure that WeatherWidget is rendered
     // with the correct data that has been received from the stub
     // (if stub would not work correctly, WeatherWidget would not receive correct
     // values)
@@ -49,6 +42,5 @@ describe('Weather with sinon-stub-promise', function() {
     expect(readWeatherReportStub.alwaysCalledWith('Hamburg'), 'to be truthy');
     expect(weather.state.weather.city, 'to equal', 'Hamburg');
 
-    expect(weather, 'to contain', <WeatherWidget weather={mockWeather}/>);
   });
 });

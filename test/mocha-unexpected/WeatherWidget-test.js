@@ -14,7 +14,7 @@ const mockWeather = {
   sky:     'clear'
 };
 
-describe("[unexpected-react] WeatherWidget", function() {
+describe("[mocha-unexpected-react] WeatherWidget", function() {
   it("render correctly without weather property", function() {
     const renderer = ReactTestUtils.createRenderer();
     renderer.render(<WeatherWidget />);
