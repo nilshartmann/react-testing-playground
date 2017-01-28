@@ -9,6 +9,10 @@ const mockWeather = {
   sky:     'clear'
 };
 
+function citySelector(node) {
+  console.log('Node Type: ', node.type());
+}
+
 describe("[mocha-chai-enzyme] WeatherWidget", function() {
   it("render correctly without weather property", function() {
     expect(shallow(<WeatherWidget />).contains(<div>No weather data loaded yet</div>)).to.equal(true);
